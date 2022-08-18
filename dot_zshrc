@@ -63,7 +63,6 @@ compinit
 export MANPAGER="nvim -c 'set ft=man' -"
 export FONTCONFIG_PATH=/etc/fonts
 export TERM="xterm-256color"
-source ~/.shell_common
 source ~/.aliases
 source ~/.exports
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
