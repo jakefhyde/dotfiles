@@ -44,20 +44,23 @@ _install_homebrew_packages() {
 _install_zsh() {
   _info "Installing zsh"
   grep -qx "$(brew --prefix)/opt/zsh/bin/zsh" /etc/shells || echo "$(brew --prefix)/opt/zsh/bin/zsh" | sudo tee -a /etc/shells
-  sudo chsh -s "$(brew --prefix)/opt/zsh/bin/zsh" "${USER}"
+  chsh -s "$(brew --prefix)/opt/zsh/bin/zsh" "${USER}"
 }
 
 _install_antigen() {
+  _info "Installing antigen"
   curl -L git.io/antigen > .antigen.zsh
 }
 
 _install_fzf() {
+  _info "Installing fzf"
   _installed ~/.fzf.zsh && return
   # To install useful key bindings and fuzzy completion:
   $(brew --prefix)/opt/fzf/install
 }
 
 _install_fonts() {
+  _info "Installing fonts"
   mkdir -p ~/.fonts
   curl -sLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf --output-dir ~/.fonts
   curl -sLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf --output-dir ~/.fonts
