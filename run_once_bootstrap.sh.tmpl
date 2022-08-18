@@ -6,7 +6,7 @@ function _info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 
 function _executable() { command "$1" &>/dev/null; }
 function _installed() { [ -f ~/.fzf.zsh ]; }
 function _system_install() { 
-  {{ if ( and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease "Ubuntu")) }}
+  {{ if ( and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) }}
   sudo apt-get install "$1"
   {{ else }}
   echo "Unsupported os"
