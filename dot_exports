@@ -1,0 +1,36 @@
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/scripts:$PATH
+export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/sdk/latest/bin:$PATH
+export PATH=$HOME/.node_modules/bin:$PATH
+export PATH=$HOME/.local/GoLand-2021.2/bin:$PATH
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH=/home/linuxbrew/.linuxbrew/lib/ruby/gems/3.0.0/bin:$PATH
+export PATH=$HOME/.dotnet:$PATH
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+export dotlocal="$HOME/.local"
+
+export exports="$HOME/.exports"
+
+export GOPATH="$HOME/.local/gopath"
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+export dotfiles="$HOME/.dotfiles"
+
+export documents="$HOME/Documents"
+export apps="$documents/apps"
+export libs="$documents/libs"
+export tools="$documents/tools"
+
+export FZF_TMUX=1
+
+export work="$documents/work"
+export rancher_org="$work/rancher"
+export rancherlabs="$work/rancherlabs"
+export rancher="$rancher_org/rancher/src/github.com/rancher/rancher"
+
+export VIRTUALENVWRAPPER_PYTHON=/home/linuxbrew/.linuxbrew/bin/python3

@@ -1,0 +1,13 @@
+/home/jfh/.dotfiles	38
+/home/jfh	66
+/home/jfh	40
+/home/jfh/.dotfiles	57
+/home/jfh/.dotfiles/.oh-my-zsh	40
+/home/jfh/.dotfiles/.oh-my-zsh	40
+/home/jfh/Documents/3rdparty	40
+/home/jfh	40
+/home/jfh	40
+/home/jfh	40
+/home/jfh/Desktop	40
+/home/jfh	40
+/home/jfh/Documents/work/rancher/rancher/src/github.com/rancher/rancher	40

@@ -1,0 +1,83 @@
+# This is Git's per-user configuration file.
+[user]
+
+# Please adapt and uncomment the following lines:
+    name = Jake Hyde
+    email = jakefhyde@gmail.com
+    
+[alias]
+
+# add
+    au = add -u
+    ap = add -u :/
+    ad = add -u .
+
+# branch
+    br = branch
+    bra = branch --all
+    
+# checkout
+    co = checkout
+    cob = checkout -b
+    
+# clean
+    cxfd = clean -xfd
+    
+# commit
+    c = commit
+    cm = commit -m
+    ca = commit --amend
+
+# config
+    cfge = config --global -e
+    cfle = config --local -e
+
+# diff
+    dh = diff HEAD
+    dh1 = diff HEAD~1
+    
+# fetch
+    fa = fetch --all
+
+# log
+    l1 = log -1
+    
+# pull
+    pl = pull
+    pod = pull origin develop
+    pur = pull upstream release/v2.6
+
+# push
+    pu = push
+    pf = push --force
+    poosh = !git push --set-upstream origin -f $(git rev-parse --abbrev-ref HEAD)
+
+# rebase
+    ri = rebase -i
+    
+# reset
+    rhh = reset HEAD --hard
+
+# submodule
+    spush = push --recurse-submodules=on-demand
+    spull = submodule update --recursive --remote
+    sclone = clone --recurse-submodules
+
+# status
+    st = status
+
+[color]
+    ui = true
+	diff = always
+	status = always
+
+[pull]
+	rebase = true
+
+[url "git@github.com:jakefhyde"]
+    insteadOf = https://github.com/jakefhyde
+
+[init]
+	defaultBranch = master
+[core]
+	editor = /home/linuxbrew/.linuxbrew/bin/nvim

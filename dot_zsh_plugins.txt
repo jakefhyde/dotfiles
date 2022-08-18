@@ -1,0 +1,7 @@
+agkozak/zsh-z
+command-not-found
+direnv
+git
+pip
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-syntax-highlighting
