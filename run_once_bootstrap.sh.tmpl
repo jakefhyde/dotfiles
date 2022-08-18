@@ -71,6 +71,7 @@ _install_fonts() {
 _install_terminal_profile() {
   _info "Installing terminal profile"
   cat ~/.gnome-terminal.properties | dconf load /org/gnome/terminal/
+  dconf write /org/gnome/desktop/interface/monospace-font-name "'MesloLGS NF Bold 13'"
 }
 
 _install_git
