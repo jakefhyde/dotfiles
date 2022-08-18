@@ -5,7 +5,7 @@ set -e
 function _info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
 function _executable() { command "$1" &>/dev/null; }
 function _installed() { [ -f ~/.fzf.zsh ]; }
-function _system_install() { apt-get install $1 }
+function _system_install() { sudo apt-get install "$1"; }
 
 
 _install_git() {
@@ -57,6 +57,7 @@ _install_fonts() {
   curl -sLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf --output-dir ~/.fonts 
 }
 
+_install_git
 _install_homebrew
 _install_homebrew_packages
 _install_zsh
