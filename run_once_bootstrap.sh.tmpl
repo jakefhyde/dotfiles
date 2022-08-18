@@ -42,10 +42,8 @@ _install_homebrew_packages() {
 }
 
 _install_zsh() {
-  if [ ! grep -qx "$(brew --prefix)/opt/zsh/bin/zsh" /etc/shells ]; then
-    _info "Installing zsh"
-    echo "$(brew --prefix)/opt/zsh/bin/zsh" | sudo tee -a /etc/shells
-  fi
+  _info "Installing zsh"
+  grep -qx "$(brew --prefix)/opt/zsh/bin/zsh" /etc/shells || echo "$(brew --prefix)/opt/zsh/bin/zsh" | sudo tee -a /etc/shells
   sudo chsh -s "$(brew --prefix)/opt/zsh/bin/zsh" "${USER}"
 }
 
