@@ -1,0 +1,138 @@
+# vim: foldmethod=marker
+
+#{{{ Powerlevel10k instant prompt
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+#}}}
+
+
+#{{{ Colors
+if [ -x "$(command -v dircolors)" ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+fi
+export TERM_ITALICS=true
+#}}}
+
+#{{{ compinit
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate                                    
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select=1                                                                                 
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s                                   
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' special-dirs true
+zstyle :compinstall filename '~/.zshrc'                                                                              
+
+fpath+=("$HOME/.zsh_completion.d")
+
+autoload -Uz compinit
+compinit
+#}}}
+
+#{{{ Plugins
+source ~/.antigen.zsh
+antigen theme romkatv/powerlevel10k
+antigen bundle agkozak/zsh-z
+antigen bundle command-not-found
+antigen bundle direnv
+antigen bundle git
+antigen bundle pip
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply
+#}}}
+
+#{{{ compinit
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate                                    
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select=1                                                                                 
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s                                   
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' special-dirs true
+zstyle :compinstall filename '~/.zshrc'                                                                              
+
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+autoload -Uz compinit
+compinit
+#}}}
+
+#{{{ Environment 
+export MANPAGER="nvim -c 'set ft=man' -"
+export FONTCONFIG_PATH=/etc/fonts
+export TERM="xterm-256color"
+source ~/.shell_common
+source ~/.aliases
+source ~/.exports
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+#}}}
+
+#{{{ Plugin Settings
+export FZF_DEFAULT_OPTS='
+--color gutter:-1,fg:-1,bg:-1,hl:3,hl+:3,bg+:#4b5263,info:2,prompt:4,pointer:4,marker:4,spinner:4,header:4
+--pointer "❯"
+--marker "❯"
+--prompt "❯ "
+'
+
+FZF_TAB_COMMAND=(
+    fzf
+    --ansi   # Enable ANSI color support, necessary for showing groups
+    --expect='$continuous_trigger,$print_query' # For continuous completion and print query
+    --nth=2,3 --delimiter='\x00'  # Don't search prefix
+    --layout=reverse --height='${FZF_TMUX_HEIGHT:=75%}'
+    --tiebreak=begin -m --bind=tab:down,btab:up,change:top,ctrl-space:toggle --cycle
+    '--query=$query'   # $query will be expanded to query string at runtime.
+    '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
+    --print-query
+)
+zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
+#}}}
+
+#{{{ zsh settings
+EDITOR="vim"
+DISABLE_AUTO_UPDATE="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+HISTFILE=~/.zsh_history
+setopt incappendhistory histignorespace histfindnodups histreduceblanks histnostore histignoredups interactivecomments histignorespace
+setopt autocd chaselinks pushdsilent autopushd
+setopt alwaystoend autolist automenu globcomplete completeinword autoremoveslash 
+unsetopt beep
+HISTSIZE=1000000
+SAVEHIST=1000000
+bindkey -e
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+#}}}
+
+#{{{ Keybinds
+bindkey '^[OA' history-substring-search-up
+bindkey '^[[A' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
+bindkey '^[[B' history-substring-search-down
+bindkey '^[[H' beginning-of-line
+bindkey '^[OH' beginning-of-line
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[OF' end-of-line
+bindkey '^[[4~' end-of-line
+bindkey '^[[Z' reverse-menu-complete
+bindkey '^?' backward-delete-char
+bindkey '^[[3~' delete-char
+bindkey '^H' kill-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+#}}}
+
+#{{{ p10k
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#}}}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
