@@ -1,10 +1,18 @@
 #!/bin/bash
 
-set -x
+set -e
 
 function _info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
 function _executable() { command "$1" &>/dev/null; }
 function _installed() { [ -f ~/.fzf.zsh ]; }
+function _system_install() { apt-get install $1 }
+
+
+_install_git() {
+  _executable git && return
+  _info "Installing git"
+  _system_install git
+}
 
 _install_homebrew() {
   _executable brew && return
