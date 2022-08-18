@@ -24,7 +24,7 @@ _install_git() {
 _install_homebrew() {
   _executable brew && return
   _info "Installing homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
+  /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   _system_install build-essential
   _system_install gcc
@@ -68,6 +68,11 @@ _install_fonts() {
   curl -sLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf --output-dir ~/.fonts 
 }
 
+_install_terminal_profile() {
+  _info "Installing terminal profile"
+  cat ~/.gnome-terminal.properties | dconf load /org/gnome/terminal/
+}
+
 _install_git
 _install_homebrew
 _install_homebrew_packages
@@ -75,5 +80,5 @@ _install_zsh
 _install_antigen
 _install_fzf
 _install_fonts
-
+_install_terminal_profile
 
