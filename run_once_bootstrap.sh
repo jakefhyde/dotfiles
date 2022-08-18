@@ -18,6 +18,7 @@ _install_homebrew() {
   _executable brew && return
   _info "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 }
 
 _install_homebrew_packages() {
@@ -33,9 +34,10 @@ _install_homebrew_packages() {
 }
 
 _install_zsh() {
-  _executable zsh && return
-  _info "Installing zsh"
-  echo "$(brew --prefix)/opt/zsh/bin/zsh" | sudo tee -a /etc/shells
+  if [ ! _executable zsh ]; then
+    _info "Installing zsh"
+    echo "$(brew --prefix)/opt/zsh/bin/zsh" | sudo tee -a /etc/shells
+  fi
   sudo chsh -s "$(brew --prefix)/opt/zsh/bin/zsh" "${USER}"
 }
 
