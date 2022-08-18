@@ -26,6 +26,8 @@ _install_homebrew() {
   _info "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  _system_install build-essentials
+  _system_install gcc
 }
 
 _install_homebrew_packages() {
