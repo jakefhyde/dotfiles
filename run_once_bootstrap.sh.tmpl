@@ -5,7 +5,14 @@ set -e
 function _info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
 function _executable() { command "$1" &>/dev/null; }
 function _installed() { [ -f ~/.fzf.zsh ]; }
-function _system_install() { sudo apt-get install "$1"; }
+function _system_install() { 
+  {{ if eq .chezmoi.os "linux and eq .chezmoi.osRelease "Ubuntu"
+  sudo apt-get install "$1"
+  {{ else }}
+  echo "Unsupported os"
+  exit 1
+  {{ end }}
+}
 
 
 _install_git() {
