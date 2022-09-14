@@ -1,0 +1,6 @@
+{{ $brew_prefix := /usr/local/ }}
+{{ if ( and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) }}
+  {{ $brew_prefix := /home/linuxbrew/.linuxbrew/ }}
+{{ end }}
+data:
+  brew_prefix: {{ $brew_prefix }}
